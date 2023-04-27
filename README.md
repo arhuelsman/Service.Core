@@ -50,3 +50,6 @@ For beginning, you can just inject a console logger:
 
 ### Do you have a sample I can reference?
 Yes! [This sample here](https://github.com/arhuelsman/SampleWebAPI) references a WebAPI example, but it can be applied to just about anything you need it for.
+
+### Can I contribute to this project?
+Feel free to fork, make a branch, whatever. I'll review anything and if I find it helpful to the core library I'll be happy to add it with note on your contribution :)
