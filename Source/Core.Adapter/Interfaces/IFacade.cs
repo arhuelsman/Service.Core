@@ -13,6 +13,15 @@ namespace Core.Facade.Interfaces
     /// <typeparam name="TResponse">What model the facade returns as a response</typeparam>
     public interface IFacade<TRequest, TResponse>
     {
-        public Task<TResponse> Handle(TRequest request);
+        public Task<TResponse> Handle(TRequest request, string? sourceSystem);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TResponse">What model the facade returns as a response</typeparam>
+    public interface IFacade<TResponse>
+    {
+        public Task<TResponse> Handle(string? sourceSystem);
     }
 }

@@ -1,51 +1,50 @@
-﻿using Core.Domain;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.Extensions.Logging;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Service.Controller
 {
-    public abstract class ServiceController : IController
+    public abstract class ServiceController<TResponse> : IController<TResponse>
     {
-        private ILogger logger;
+        protected ILogger logger;
 
-        public abstract string ServiceName { get; set; }
+        public abstract string ServiceName { get; }
 
         public ServiceController(ILogger logger)
         {
             this.logger = logger;
         }
 
-        public IServiceResult Execute()
+        public async Task<TResponse> Execute()
         {
             var timer = new Stopwatch();
             this.logger.LogInformation($"{this.ServiceName} began execution");
             timer.Start();
-            var result = this.OnExecute();
+            var result = await this.OnExecute();
             timer.Stop();
             this.logger.LogInformation($"{this.ServiceName} ended execution after {timer.Elapsed.TotalMilliseconds} milliseconds");
             return result;
         }
 
-        public abstract IServiceResult OnExecute();
+        public virtual Task<TResponse> OnExecute()
+        {
+            return this.OnExecute(null);
+        }
+
+        public abstract Task<TResponse> OnExecute(string? SourceSystem);
     }
 
-    public abstract class ServiceController<T> : IController<T> where T : class
+    public abstract class ServiceController<TRequest, TResponse> : IController<TRequest, TResponse>
     {
-        private ILogger logger;
+        protected ILogger logger;
 
         public ServiceController(ILogger logger)
         {
             this.logger = logger;
         }
 
-        public abstract string ServiceName { get; set; }
+        public abstract string ServiceName { get; }
 
-        public IServiceResult Execute(T request)
+        public Task<TResponse> Execute(TRequest request)
         {
             var timer = new Stopwatch();
             this.logger.LogInformation($"{this.ServiceName} began execution");
@@ -56,6 +55,11 @@ namespace Core.Service.Controller
             return result;
         }
 
-        public abstract IServiceResult OnExecute(T request);
+        public virtual Task<TResponse> OnExecute(TRequest request)
+        {
+            return this.OnExecute(request, null);
+        }
+
+        public abstract Task<TResponse> OnExecute(TRequest request, string? SourceSystem);
     }
 }

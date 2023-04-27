@@ -2,7 +2,12 @@
 {
     public interface IAdapter<TRequest, TResponse>
     {
-        public bool HandlesSourceSystem(string sourceSystem);
+        public bool HandlesSourceSystem(string? sourceSystem);
         public Task<TResponse> Handle(TRequest request);
+    }
+    public interface IAdapter<TResponse>
+    {
+        public bool HandlesSourceSystem(string? sourceSystem);
+        public Task<TResponse> Handle();
     }
 }

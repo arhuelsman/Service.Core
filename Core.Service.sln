@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Service", "Source\Core.Service.csproj", "{9DFDEE71-FF76-47AC-A008-A606B82B0BEC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Domain", "Source\Core.Domain\Core.Domain.csproj", "{1A45953B-D1D6-4591-92C3-5FA0BECF3FA3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Service", "Source\Core.Service\Core.Service.csproj", "{9DFDEE71-FF76-47AC-A008-A606B82B0BEC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Facade", "Source\Core.Adapter\Core.Facade.csproj", "{5AA773E3-4199-4B98-8A51-315FED21A1E5}"
 EndProject
@@ -19,10 +17,6 @@ Global
 		{9DFDEE71-FF76-47AC-A008-A606B82B0BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DFDEE71-FF76-47AC-A008-A606B82B0BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DFDEE71-FF76-47AC-A008-A606B82B0BEC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1A45953B-D1D6-4591-92C3-5FA0BECF3FA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A45953B-D1D6-4591-92C3-5FA0BECF3FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A45953B-D1D6-4591-92C3-5FA0BECF3FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A45953B-D1D6-4591-92C3-5FA0BECF3FA3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5AA773E3-4199-4B98-8A51-315FED21A1E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5AA773E3-4199-4B98-8A51-315FED21A1E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AA773E3-4199-4B98-8A51-315FED21A1E5}.Release|Any CPU.ActiveCfg = Release|Any CPU

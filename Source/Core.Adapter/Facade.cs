@@ -11,26 +11,45 @@ namespace Core.Facade
     {
         private readonly IEnumerable<IAdapter<TRequest, TResponse>> adapters;
 
-        public abstract string SourceSystem { get; }
-
         public Facade(IEnumerable<IAdapter<TRequest, TResponse>> adapters)
         {
             this.adapters = adapters;
         }
 
-        public Task<TResponse> Handle(TRequest request)
+        public Task<TResponse> Handle(TRequest request, string? sourceSystem)
         {
-            var relevantAdapter = this.adapters.FirstOrDefault(x => x.HandlesSourceSystem(this.SourceSystem));
+            var relevantAdapter = this.adapters.FirstOrDefault(x => x.HandlesSourceSystem(sourceSystem));
             if (relevantAdapter != null)
             {
                 return relevantAdapter.Handle(request);
             }
             else
             {
-                throw new AdapterNotFoundException($"Adapter not found for source system: {this.SourceSystem}");
+                throw new AdapterNotFoundException($"Adapter not found for source system: {sourceSystem}");
             }
         }
+    }
 
+    public abstract class Facade<TResponse> : IFacade<TResponse>
+    {
+        private readonly IEnumerable<IAdapter<TResponse>> adapters;
 
+        public Facade(IEnumerable<IAdapter<TResponse>> adapters)
+        {
+            this.adapters = adapters;
+        }
+
+        public Task<TResponse> Handle(string? sourceSystem)
+        {
+            var relevantAdapter = this.adapters.FirstOrDefault(x => x.HandlesSourceSystem(sourceSystem));
+            if (relevantAdapter != null)
+            {
+                return relevantAdapter.Handle();
+            }
+            else
+            {
+                throw new AdapterNotFoundException($"Adapter not found for source system: {sourceSystem}");
+            }
+        }
     }
 }

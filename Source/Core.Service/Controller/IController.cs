@@ -1,21 +1,14 @@
-﻿using Core.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Service.Controller
+﻿namespace Core.Service.Controller
 {
-    public interface IController
+    public interface IController<TResponse>
     {
-        public string ServiceName { get; set; }
-        public IServiceResult Execute();
+        public string ServiceName { get; }
+        public Task<TResponse> Execute();
     }
 
-    public interface IController<T> where T : class
+    public interface IController<TRequest, TResponse>
     {
-        public string ServiceName { get; set; }
-        public IServiceResult Execute(T request);
+        public string ServiceName { get; }
+        public Task<TResponse> Execute(TRequest request);
     }
 }
