@@ -29,6 +29,7 @@ All it requires are the following steps:
 
 * Adapters should live in their own project. This is essential to the Anti-Corruption layer pattern. You don't want to mix data retrieval/source models between systems. It just creates a headache. Keep your adapters separated, and only used to fetch/transform data, and you'll be one happy camper in the future. Trust me on that.
 
+* Keep your dependency injection in your projects specific to that project. For example, don't add DI to your main project for your implementation. Don't add DI anywhere for your adapters besides in your adapter projects. Keep things separate, and you don't end up with dependency hell, and you make sure your implementations are where they belong. See the sample project at the end of the readme as an example.
 
 ### FAQ
 
